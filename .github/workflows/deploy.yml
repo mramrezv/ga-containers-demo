@@ -11,8 +11,8 @@ jobs:
   test:
     environment: testing
     runs-on: ubuntu-latest
-    #container: 
-      #image: node:16
+    container: 
+      image: node:16
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb
       MONGODB_URI: mongodb://admin:admin@mongodb:27017/gha-demo?authSource=admin
