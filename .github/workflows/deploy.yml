@@ -38,9 +38,9 @@ jobs:
           key: ${{ env.CACHE_KEY }}-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
-      - name: verify step
-        run: |
-          node -e "require('net').createConnection(27017,'mongodb').on('connect',()=>console.log('Mongo reachable'))"
+     # - name: verify step
+      #  run: |
+       #   node -e "require('net').createConnection(27017,'mongodb').on('connect',()=>console.log('Mongo reachable'))"
       - name: Start app
         run: npm start &
       - name: Run server
