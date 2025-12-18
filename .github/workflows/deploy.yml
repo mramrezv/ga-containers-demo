@@ -15,7 +15,8 @@ jobs:
       image: node:16
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb
-      MONGODB_URI: mongodb://admin:admin@mongodb:27017/gha-demo?authSource=admin
+      MONGODB_CLUSTER_ADDRESS: mongodb
+      MONGODB_DB_NAME: gha-demo
       MONGODB_USERNAME: admin
       MONGODB_PASSWORD: admin
       PORT: 8080
@@ -40,7 +41,6 @@ jobs:
       - name: verify step
         run: |
           node -e "require('net').createConnection(27017,'mongodb').on('connect',()=>console.log('Mongo reachable'))"
-
       - name: Start app
         run: npm start &
       - name: Run server
