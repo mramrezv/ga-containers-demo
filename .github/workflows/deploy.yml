@@ -28,8 +28,6 @@ jobs:
     services:
       mongodb:
         image: mongo:6
-        ports:
-          - 27017:27017
         env:
           MONGODB_INITDB_ROOT_USERNAME: root
           MONGODB_INITDB_ROOT_PASSWORD: example
@@ -47,13 +45,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Wait for MongoDB to be ready
-        run: |
-          until mongosh "mongodb://root:example@mongodb:27017/admin" \
-            --eval "db.runCommand({ ping: 1 })"; do
-            echo "Waiting for MongoDB..."
-            sleep 2
-          done
+      - name: Wait for MongoDB
+        run: npx wait-on tcp:mongodb:27017
 
       - name: Run server
         run: |
