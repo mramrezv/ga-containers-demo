@@ -41,10 +41,8 @@ jobs:
      # - name: verify step
       #  run: |
        #   node -e "require('net').createConnection(27017,'mongodb').on('connect',()=>console.log('Mongo reachable'))"
-      - name: Start app
-        run: npm start &
       - name: Run server
-        run:  npx wait-on http://127.0.0.1:8080
+        run: npm start & npx wait-on http://127.0.0.1:$PORT
       - name: Run tests
         run: npm test
       - name: Output information
